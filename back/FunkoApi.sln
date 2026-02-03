@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunkoApi", "FunkoApi\FunkoApi.csproj", "{6291A588-589B-4B01-8892-E30139047818}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A08584AC-87E7-4BDC-80E3-99CCFC479901}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+		.env = .env
+		docker-script.ps1 = docker-script.ps1
+		docker-script.sh = docker-script.sh
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFunko", "TestFunko\TestFunko.csproj", "{9A261B24-6314-423D-82DC-D4E985904588}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6291A588-589B-4B01-8892-E30139047818}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6291A588-589B-4B01-8892-E30139047818}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6291A588-589B-4B01-8892-E30139047818}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6291A588-589B-4B01-8892-E30139047818}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A261B24-6314-423D-82DC-D4E985904588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A261B24-6314-423D-82DC-D4E985904588}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A261B24-6314-423D-82DC-D4E985904588}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A261B24-6314-423D-82DC-D4E985904588}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

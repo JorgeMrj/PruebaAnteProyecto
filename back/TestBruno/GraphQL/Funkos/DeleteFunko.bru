@@ -1,0 +1,46 @@
+meta {
+  name: Delete Funko
+  type: graphql
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/graphql
+  body: graphql
+  auth: inherit
+}
+
+docs {
+  # GraphQL - Delete Funko
+  
+  Mutation para eliminar un Funko.
+  
+  ## Argumentos
+  - `id`: ID del funko a eliminar.
+  
+  ## Autenticación
+  - Requiere rol **ADMIN**.
+}
+
+body:graphql {
+  mutation DeleteFunko($id: Long!) {
+    deleteFunko(input: { id: $id }) {
+      funkoResponseDto {
+        id
+        nombre
+      }
+    }
+  }
+}
+
+body:graphql:vars {
+  {
+    "id": 1
+  }
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.status).to.equal(200);
+  });
+}

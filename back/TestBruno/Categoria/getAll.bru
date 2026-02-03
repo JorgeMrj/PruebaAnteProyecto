@@ -1,0 +1,31 @@
+meta {
+  name: Get All Categories
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/categoria
+  body: none
+  auth: none
+}
+
+docs {
+  # Get All Categories
+  
+  Obtiene una lista de todas las categorías disponibles.
+  
+  ## Respuesta
+  - Retorna un array JSON con las categorías.
+  - No requiere autenticación (público).
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Should return an array", function() {
+    expect(res.body).to.be.an('array');
+  });
+}

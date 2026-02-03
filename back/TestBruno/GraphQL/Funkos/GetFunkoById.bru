@@ -1,0 +1,48 @@
+meta {
+  name: Get Funko By Id
+  type: graphql
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/graphql
+  body: graphql
+  auth: none
+}
+
+docs {
+  # GraphQL - Get Funko By ID
+  
+  Consulta un Funko específico por su ID.
+  
+  ## Variables
+  - `id`: Long (ID del funko).
+  
+  ## Autenticación
+  - Pública.
+}
+
+body:graphql {
+  query GetFunko($id: Long!) {
+    funko(id: $id) {
+      id
+      name
+      price
+      category {
+        nombre
+      }
+    }
+  }
+}
+
+body:graphql:vars {
+  {
+    "id": 1
+  }
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.status).to.equal(200);
+  });
+}

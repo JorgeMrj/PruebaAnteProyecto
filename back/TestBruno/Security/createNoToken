@@ -1,0 +1,33 @@
+﻿meta {
+  name: Categoria - Unauthorized Create
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/categoria
+  body: json
+  auth: none
+}
+
+docs {
+  # Categoria - Unauthorized Create
+  
+  Verifica que no se pueda crear una categoría sin autenticación.
+  
+  ## Respuesta Esperada
+  - **401 Unauthorized**: No se proporcionó token.
+}
+
+body:json {
+  {
+    "nombre": "Test Category",
+    "descripcion": "Should fail without token"
+  }
+}
+
+tests {
+  test("Status should be 401", function() {
+    expect(res.status).to.equal(401);
+  });
+}

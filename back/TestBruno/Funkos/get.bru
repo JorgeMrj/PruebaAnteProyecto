@@ -1,0 +1,31 @@
+meta {
+  name: Get All Funkos
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/funkos
+  body: none
+  auth: none
+}
+
+docs {
+  # Get All Funkos
+  
+  Obtiene la lista completa de productos Funko disponibles.
+  
+  ## Respuesta
+  - Retorna un array JSON con los Funkos.
+  - Endpoint público.
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Should return an array", function() {
+    expect(res.body).to.be.an('array');
+  });
+}

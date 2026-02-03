@@ -1,0 +1,46 @@
+meta {
+  name: Create Funko With Image
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/funkos
+  body: multipartForm
+  auth: bearer
+}
+
+docs {
+  # Create Funko With Image
+  
+  Crea un nuevo producto Funko subiendo una imagen asociada.
+  
+  ## Requisitos
+  - Requiere token **ADMIN**.
+  - Utiliza `multipart/form-data`.
+  - El ID generado se guarda en la variable `funkoWithImageId`.
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body:multipart-form {
+  Nombre: Superman
+  Price: 34.99
+  Categoria: Anime
+  ~file: @file(../assets/hola.jpg)
+}
+
+script:post-response {
+  if (res.status === 201) {
+    bru.setEnvVar("funkoWithImageId", res.body.id);
+    console.log("Funko with image ID saved:", res.body.id);
+  }
+}
+
+tests {
+  test("Status should be 201 or 400", function() {
+    expect([201, 400]).to.include(res.status);
+  });
+}

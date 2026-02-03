@@ -1,0 +1,47 @@
+meta {
+  name: Get Funkos
+  type: graphql
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/graphql
+  body: graphql
+  auth: none
+}
+
+docs {
+  # GraphQL - Get Funkos
+  
+  Consulta para obtener la lista de todos los Funkos.
+  
+  ## Projection
+  - Incluye relación con `category`.
+  
+  ## Autenticación
+  - Pública.
+}
+
+body:graphql {
+  query {
+    funkos {
+      id
+      name
+      price
+      category {
+        nombre
+      }
+      imagen
+    }
+  }
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Should return a list of funkos", function() {
+    expect(res.body.data.funkos).to.be.an('array');
+  });
+}

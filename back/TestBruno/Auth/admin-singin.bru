@@ -1,0 +1,45 @@
+meta {
+  name: SignIn - Admin Login
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/auth/signin
+  body: json
+  auth: none
+}
+
+docs {
+  # Admin Sign In
+  
+  Inicia sesión con credenciales de administrador para obtener un token JWT con rol ADMIN.
+  
+  ## Credenciales
+  - Utiliza las variables de entorno `adminUsername` y `adminPassword`.
+  - El token resultante se guarda automáticamente en la variable `adminToken`.
+}
+
+body:json {
+  {
+    "username": "{{adminUsername}}",
+    "password": "{{adminPassword}}"
+  }
+}
+
+script:post-response {
+  if (res.status === 200) {
+    bru.setEnvVar("adminToken", res.body.token);
+    console.log("Admin token saved:", res.body.token);
+  }
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Should return token", function() {
+    expect(res.body.token).to.be.a('string');
+  });
+}

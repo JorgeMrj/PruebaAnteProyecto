@@ -1,0 +1,43 @@
+meta {
+  name: Get Categorias
+  type: graphql
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/graphql
+  body: graphql
+  auth: none
+}
+
+docs {
+  # GraphQL - Get Categories
+  
+  Consulta para obtener todas las categorías.
+  
+  ## CAMPOS
+  - `id`
+  - `nombre`
+  
+  ## Autenticación
+  - Pública (no requiere token).
+}
+
+body:graphql {
+  query {
+    categorias {
+      id
+      nombre
+    }
+  }
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.status).to.equal(200);    
+  });
+  
+  test("Should return a list of categories", function() {
+    expect(res.body.data.categorias).to.be.an('array');
+  });
+}

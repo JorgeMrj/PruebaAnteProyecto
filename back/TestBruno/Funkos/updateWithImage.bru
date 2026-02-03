@@ -1,0 +1,38 @@
+meta {
+  name: Update Funko With Image
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{baseUrl}}/api/Funkos/{{funkoId}}
+  body: multipartForm
+  auth: bearer
+}
+
+docs {
+  # Update Funko With Image
+  
+  Actualiza los datos y la imagen de un Funko existente.
+  
+  ## Requisitos
+  - Requiere token **ADMIN**.
+  - Reemplaza la imagen anterior si existe.
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body:multipart-form {
+  Nombre: Batman Dark Knight Ultimate Edition
+  Price: 40.99
+  Categoria: Anime
+  ~file: @file(../assets/hola.jpg)
+}
+
+tests {
+  test("Status should be 200, 400, or 404", function() {
+    expect([200, 400, 404]).to.include(res.status);
+  });
+}

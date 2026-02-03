@@ -1,0 +1,37 @@
+meta {
+  name: Update Funko
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/api/funkos/{{funkoId}}
+  body: multipartForm
+  auth: bearer
+}
+
+docs {
+  # Update Funko
+  
+  Actualiza los datos de un Funko existente.
+  
+  ## Requisitos
+  - Requiere token **ADMIN**.
+  - Utiliza `funkoId` de la variable de entorno.
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body:multipart-form {
+  Nombre: Batman Dark Knight Updated
+  Price: 40.99
+  Categoria: Anime
+}
+
+tests {
+  test("Status should be 200, 400, or 404", function() {
+    expect([200, 400, 404]).to.include(res.status);
+  });
+}

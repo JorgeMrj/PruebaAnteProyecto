@@ -1,0 +1,48 @@
+meta {
+  name: Create Category
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/categoria
+  body: json
+  auth: bearer
+}
+
+docs {
+  # Create Category
+  
+  Crea una nueva categoría de productos.
+  
+  ## Requisitos
+  - Requiere token de autenticación con rol **ADMIN**.
+  - El ID de la nueva categoría se guarda en la variable `categoryId` para usar en otros tests.
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body:json {
+  {
+    "nombre": "DC Comics"
+  }
+}
+
+script:post-response {
+  if (res.status === 201) {
+    bru.setEnvVar("categoryId", res.body.id);
+    console.log("Category ID saved:", res.body.id);
+  }
+}
+
+tests {
+  test("Status should be 201", function() {
+    expect(res.status).to.equal(201);
+  });
+  
+  test("Should return created category", function() {
+    expect(res.body.nombre).to.equal("DC Comics");
+  });
+}

@@ -1,0 +1,57 @@
+meta {
+  name: Create Funko
+  type: graphql
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/graphql
+  body: graphql
+  auth: inherit
+}
+
+docs {
+  # GraphQL - Create Funko
+  
+  Mutation para crear un nuevo Funko.
+  
+  ## Argumentos
+  - `input`: Objeto `CreateFunkoInput`.
+  
+  ## Autenticación
+  - Requiere rol **ADMIN**.
+}
+
+body:graphql {
+  mutation CreateFunko($input: CreateFunkoInput!) {
+    createfunko(input: $input) {
+      funkoResponseDto {
+        id
+        nombre
+        precio
+        categoria
+        imagen
+      }
+    }
+  }
+}
+
+body:graphql:vars {
+  {
+    "input": {
+      "nombre": "Bruno Funko",
+      "precio": 15.99,
+      "categoriaId": "Anime"
+    }
+  }
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Should return the created funko", function() {
+    expect(res.body.data.createfunko.funkoResponseDto.nombre).to.equal("Bruno Funko");
+  });
+}

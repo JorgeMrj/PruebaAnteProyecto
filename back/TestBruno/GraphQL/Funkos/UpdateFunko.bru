@@ -1,0 +1,53 @@
+meta {
+  name: Update Funko
+  type: graphql
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/graphql
+  body: graphql
+  auth: inherit
+}
+
+docs {
+  # GraphQL - Update Funko
+  
+  Mutation para actualizar un Funko existente.
+  
+  ## Argumentos
+  - `id`: ID del funko a modificar.
+  - `input`: Campos a actualizar.
+  
+  ## Autenticación
+  - Requiere rol **ADMIN**.
+}
+
+body:graphql {
+  mutation UpdateFunko($id: Long!, $input: UpdateFunkoInput!) {
+    updateFunko(id: $id, input: $input) {
+      funkoResponseDto {
+        id
+        nombre
+        precio
+      }
+    }
+  }
+}
+
+body:graphql:vars {
+  {
+    "id": 1,
+    "input": {
+      "nombre": "Updated Bruno Funko",
+      "precio": 19.99,
+      "categoriaId": "Anime"
+    }
+  }
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.status).to.equal(200);
+  });
+}

@@ -1,0 +1,50 @@
+meta {
+  name: Create Funko
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/funkos
+  body: multipartForm
+  auth: bearer
+}
+
+docs {
+  # Create Funko
+  
+  Crea un nuevo producto Funko (sin imagen).
+  
+  ## Requisitos
+  - Requiere token **ADMIN**.
+  - El ID generado se guarda en la variable `funkoId`.
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body:multipart-form {
+  Nombre: Batman Dark Knight
+  Price: 29.99
+  Categoria: Anime
+}
+
+script:post-response {
+  if (res.status === 201) {
+    bru.setEnvVar("funkoId", res.body.id);
+    console.log("Funko ID saved:", res.body.id);
+  }
+}
+
+tests {
+  test("Status should be 201 or 400", function() {
+    expect([201, 400]).to.include(res.status);
+  });
+  
+  test("Should return created funko if successful", function() {
+    if (res.status === 201) {
+      expect(res.body.nombre).to.equal("Batman Dark Knight");
+    }
+  });
+}

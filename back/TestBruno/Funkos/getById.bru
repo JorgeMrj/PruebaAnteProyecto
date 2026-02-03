@@ -1,0 +1,30 @@
+meta {
+  name: Get Funko By ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/funkos/{{funkoId}}
+  body: none
+  auth: none
+}
+
+docs {
+  # Get Funko By ID
+  
+  Obtiene los detalles de un Funko específico.
+  
+  ## Parametros
+  - `funkoId`: ID del producto a consultar.
+}
+
+vars:pre-request {
+  funkoId: 1
+}
+
+tests {
+  test("Status should be 200 or 404", function() {
+    expect([200, 404]).to.include(res.status);
+  });
+}

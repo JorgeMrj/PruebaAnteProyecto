@@ -1,0 +1,32 @@
+meta {
+  name: Delete Funko
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{baseUrl}}/api/funkos/{{funkoId}}
+  body: none
+  auth: bearer
+}
+
+docs {
+  # Delete Funko
+  
+  Elimina un producto Funko del sistema.
+  
+  ## Requisitos
+  - Requiere token **ADMIN**.
+  - Utiliza `funkoId`.
+  - Si tiene imagen asociada, también se elimina del almacenamiento.
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+tests {
+  test("Status should be 200 or 404", function() {
+    expect([200, 404]).to.include(res.status);
+  });
+}

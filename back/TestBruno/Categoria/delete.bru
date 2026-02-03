@@ -1,0 +1,32 @@
+meta {
+  name: Delete Category
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/categoria/{{categoryId}}
+  body: none
+  auth: bearer
+}
+
+docs {
+  # Delete Category
+  
+  Elimina una categoría del sistema.
+  
+  ## Requisitos
+  - Requiere token de autenticación con rol **ADMIN**.
+  - Utiliza `categoryId` de la variable de entorno.
+  - La operación es irreversible.
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+tests {
+  test("Status should be 200 or 404", function() {
+    expect([200, 404]).to.include(res.status);
+  });
+}
