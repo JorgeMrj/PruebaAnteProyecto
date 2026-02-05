@@ -16,13 +16,14 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/frontwpa-ejemplo",
             "browser": "src/main.ts",
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+                   { "glob": "**/*", "input": "src/assets", "output": "/assets" },
+                  { "glob": "**/*", "input": "public" }
             ],
             "styles": [
               "src/styles.css"
@@ -42,7 +43,9 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
