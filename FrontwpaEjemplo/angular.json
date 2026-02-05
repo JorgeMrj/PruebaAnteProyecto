@@ -19,7 +19,6 @@
             "outputPath": "dist/frontwpa-ejemplo",
             "browser": "src/main.ts",
             "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json",
             "tsConfig": "tsconfig.app.json",
             "assets": [
                    { "glob": "**/*", "input": "src/assets", "output": "/assets" },
