@@ -28,7 +28,6 @@ export class Lista implements OnInit {
     this.http.get<Funko[]>('https://pruebaanteproyecto.onrender.com/api/funkos').subscribe({
       next: (data) => {
         this.funkos = data;
-        this.loading = false;
       },
     });
   }
