@@ -1,0 +1,57 @@
+<div class="container mx-auto p-6">
+  <h1 class="text-4xl font-bold text-center mb-8">Catálogo de Funkos</h1>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="flex justify-center items-center h-64">
+    <span class="loading loading-spinner loading-lg"></span>
+  </div>
+
+  <!-- Grid de Funkos -->
+  <div *ngIf="!loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div
+      *ngFor="let funko of funkos"
+      class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+    >
+      <figure class="px-4 pt-4">
+        <img [src]="funko.imagen" [alt]="funko.name" class="rounded-xl h-48 w-full object-cover" />
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title">
+          {{ funko.name }}
+          <div class="badge badge-secondary" *ngIf="funko.category">
+            {{ funko.category.name || funko.category }}
+          </div>
+        </h2>
+        <div class="flex justify-between items-center mt-2">
+          <p class="text-2xl font-bold text-primary">{{ funko.price | currency }}</p>
+        </div>
+        <div class="card-actions justify-end mt-4">
+          <button class="btn btn-primary btn-sm">Ver Detalles</button>
+          <button class="btn btn-ghost btn-sm">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && funkos.length === 0" class="text-center py-12">
+    <div class="text-6xl mb-4">📦</div>
+    <h3 class="text-2xl font-bold mb-2">No hay funkos disponibles</h3>
+    <p class="text-gray-500">Vuelve más tarde para ver nuevos productos</p>
+  </div>
+</div>
