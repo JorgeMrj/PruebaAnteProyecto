@@ -25,6 +25,7 @@ builder.Services.AddDbContext<FunkoDbContext>(options =>
     options.UseNpgsql(connectionString));
 // Auth
 services.AddAuthentication(builder.Configuration);
+services.AddCorsPolicy(builder.Configuration, true);
 // repositorios
 services.AddRepositories();
 // servicios
