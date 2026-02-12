@@ -35,10 +35,29 @@ public static class CorsConfig
 
                 options.AddPolicy("ProductionPolicy", policy =>
                 {
-                    policy.WithOrigins(allowedOrigins)
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials();
+                    policy.SetIsOriginAllowed(origin =>
+                    {
+                        // Verificar orígenes exactos
+                        if (allowedOrigins.Any(ao => ao.Equals(origin, StringComparison.OrdinalIgnoreCase)))
+                            return true;
+                        
+                        // Verificar patrones con wildcard
+                        foreach (var allowedOrigin in allowedOrigins)
+                        {
+                            if (allowedOrigin.Contains("*"))
+                            {
+                                var pattern = "^" + System.Text.RegularExpressions.Regex.Escape(allowedOrigin)
+                                    .Replace("\\*", ".*") + "$";
+                                if (System.Text.RegularExpressions.Regex.IsMatch(origin, pattern, 
+                                    System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                                    return true;
+                            }
+                        }
+                        return false;
+                    })
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
                 });
                 Log.Information("🌐 CORS: ProductionPolicy con {Count} orígenes", allowedOrigins.Length);
             }
