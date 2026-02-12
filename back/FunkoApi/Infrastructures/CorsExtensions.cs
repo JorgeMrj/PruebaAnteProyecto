@@ -12,11 +12,8 @@ public static class CorsExtensions
     /// </summary>
     public static IApplicationBuilder UseCorsPolicy(this IApplicationBuilder app)
     {
-        var env = ((WebApplication)app).Environment;
-
-        var policyName = env.IsDevelopment() ? "AllowAll" : "ProductionPolicy";
-
-        Log.Information("🌐 Aplicando política CORS: {PolicyName}", policyName);
-        return app.UseCors(policyName);
+        // Usar siempre AllowAll ya que es lo que se registra
+        Log.Information("🌐 Aplicando política CORS: AllowAll");
+        return app.UseCors("AllowAll");
     }
 }
