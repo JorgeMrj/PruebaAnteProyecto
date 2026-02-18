@@ -1,0 +1,150 @@
+<div class="container mx-auto p-6 max-w-2xl">
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-2xl mb-4">
+        {{ isEditMode() ? 'Editar Funko' : 'Crear Nuevo Funko' }}
+      </h2>
+
+      <!-- Success Alert -->
+      @if (successMessage()) {
+        <div class="alert alert-success mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="stroke-current shrink-0 h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>{{ successMessage() }}</span>
+        </div>
+      }
+
+      <!-- Error Alert -->
+      @if (errorMessage()) {
+        <div class="alert alert-error mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="stroke-current shrink-0 h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>{{ errorMessage() }}</span>
+        </div>
+      }
+
+      <!-- Form -->
+      <form (ngSubmit)="onSubmit()">
+        <!-- Nombre -->
+        <div class="form-control mb-4">
+          <label class="label">
+            <span class="label-text">Nombre *</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Ej: Iron Man Funko Pop"
+            class="input input-bordered w-full"
+            [value]="nombre()"
+            (input)="nombre.set($any($event.target).value)"
+            required
+          />
+        </div>
+
+        <!-- Precio -->
+        <div class="form-control mb-4">
+          <label class="label">
+            <span class="label-text">Precio (€) *</span>
+          </label>
+          <input
+            type="number"
+            step="0.01"
+            placeholder="19.99"
+            class="input input-bordered w-full"
+            [value]="precio()"
+            (input)="precio.set(+$any($event.target).value)"
+            required
+            min="0"
+          />
+        </div>
+
+        <!-- Categoría -->
+        <div class="form-control mb-4">
+          <label class="label">
+            <span class="label-text">Categoría *</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Ej: Marvel, DC, Anime, etc."
+            class="input input-bordered w-full"
+            [value]="categoria()"
+            (input)="categoria.set($any($event.target).value)"
+            required
+          />
+        </div>
+
+        <!-- Imagen del Funko -->
+        <div class="form-control mb-4">
+          <label class="label">
+            <span class="label-text">Imagen del Funko</span>
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            class="file-input file-input-bordered w-full"
+            (change)="onFileSelected($event)"
+          />
+          <label class="label">
+            <span class="label-text-alt">Formatos permitidos: JPG, PNG, GIF (Máx. 5MB)</span>
+          </label>
+          
+          <!-- Preview de la imagen -->
+          @if (previewUrl()) {
+            <div class="mt-4">
+              <img
+                [src]="previewUrl()"
+                alt="Preview"
+                class="w-48 h-48 object-cover rounded-lg border-2 border-base-300"
+              />
+            </div>
+          } @else if (isEditMode() && imagen()) {
+            <div class="mt-4">
+              <img
+                [src]="getImageUrl(imagen())"
+                alt="Imagen actual"
+                class="w-48 h-48 object-cover rounded-lg border-2 border-base-300"
+              />
+              <p class="text-sm text-base-content/70 mt-2">Imagen actual (selecciona un archivo para cambiarla)</p>
+            </div>
+          }
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex gap-4 justify-end">
+          <button type="button" class="btn btn-ghost" (click)="onCancel()" [disabled]="loading()">
+            Cancelar
+          </button>
+          <button type="submit" class="btn btn-primary" [disabled]="loading()">
+            @if (loading()) {
+              <span class="loading loading-spinner"></span>
+              Guardando...
+            } @else {
+              {{ isEditMode() ? 'Actualizar' : 'Crear' }} Funko
+            }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

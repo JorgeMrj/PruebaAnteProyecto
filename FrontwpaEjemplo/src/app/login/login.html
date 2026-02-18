@@ -1,0 +1,81 @@
+<div class="min-h-screen flex items-center justify-center bg-base-200">
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title justify-center text-2xl mb-4">Iniciar Sesión</h2>
+
+      <!-- Error Alert -->
+      @if (errorMessage()) {
+        <div class="alert alert-error mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="stroke-current shrink-0 h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>{{ errorMessage() }}</span>
+        </div>
+      }
+
+      <!-- Login Form -->
+      <form (ngSubmit)="onSubmit()">
+        <!-- Username -->
+        <div class="form-control mb-4">
+          <label class="label">
+            <span class="label-text">Usuario</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Introduce tu usuario"
+            class="input input-bordered w-full"
+            [value]="username()"
+            (input)="username.set($any($event.target).value)"
+            required
+          />
+        </div>
+
+        <!-- Password -->
+        <div class="form-control mb-6">
+          <label class="label">
+            <span class="label-text">Contraseña</span>
+          </label>
+          <input
+            type="password"
+            placeholder="Introduce tu contraseña"
+            class="input input-bordered w-full"
+            [value]="password()"
+            (input)="password.set($any($event.target).value)"
+            required
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-control">
+          <button type="submit" class="btn btn-primary w-full" [disabled]="loading()">
+            @if (loading()) {
+              <span class="loading loading-spinner"></span>
+              Iniciando sesión...
+            } @else {
+              Iniciar Sesión
+            }
+          </button>
+        </div>
+      </form>
+
+      <!-- Register Link -->
+      <div class="divider">O</div>
+      <div class="text-center">
+        <p class="text-sm">
+          ¿No tienes cuenta?
+          <a routerLink="/register" class="link link-primary">Regístrate aquí</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,15 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Lista } from "./lista/lista";
+import { Component, inject } from '@angular/core';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AuthService } from './services/auth.service';
+import { SyncStatus } from './sync-status/sync-status';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Lista],
+  imports: [RouterOutlet, RouterLink, CommonModule, SyncStatus],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('FrontwpaEjemplo');
+  protected authService = inject(AuthService);
 }
