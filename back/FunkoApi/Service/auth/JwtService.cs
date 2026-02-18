@@ -26,12 +26,20 @@ public class JwtService(
     /// <exception cref="InvalidOperationException">Si la clave JWT no está configurada.</exception>
     public string GenerateToken(User user)
     {
-        var key = _configuration["Jwt:Key"]
+        // Lee primero las variables de entorno directas, luego las jerárquicas
+        var key = Environment.GetEnvironmentVariable("JWT_KEY")
+            ?? _configuration["Jwt:Key"]
             ?? throw new InvalidOperationException("JWT Key no configurada");
-        var issuer = _configuration["Jwt:Issuer"] ?? "TiendaApi";
-        var audience = _configuration["Jwt:Audience"] ?? "TiendaApi";
+        var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER")
+            ?? _configuration["Jwt:Issuer"] 
+            ?? "TiendaApi";
+        var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE")
+            ?? _configuration["Jwt:Audience"] 
+            ?? "TiendaApi";
         var expireMinutes = int.Parse(_configuration["Jwt:ExpireMinutes"] ?? "60");
 
+        _logger.LogDebug("🔐 JWT Key length: {Length} chars", key.Length);
+        
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -68,10 +76,16 @@ public class JwtService(
     {
         try
         {
-            var key = _configuration["Jwt:Key"]
+            // Lee primero las variables de entorno directas, luego las jerárquicas
+            var key = Environment.GetEnvironmentVariable("JWT_KEY")
+                ?? _configuration["Jwt:Key"]
                 ?? throw new InvalidOperationException("JWT Key no configurada");
-            var issuer = _configuration["Jwt:Issuer"] ?? "TiendaApi";
-            var audience = _configuration["Jwt:Audience"] ?? "TiendaApi";
+            var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER")
+                ?? _configuration["Jwt:Issuer"] 
+                ?? "TiendaApi";
+            var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE")
+                ?? _configuration["Jwt:Audience"] 
+                ?? "TiendaApi";
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));

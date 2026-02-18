@@ -1,0 +1,69 @@
+2026-02-18T16:56:30.245479973Z [16:56:30 INF] 📦 Configurando controladores MVC...
+2026-02-18T16:56:30.34372572Z [16:56:30 INF] 🔐 Configurando autenticación JWT...
+2026-02-18T16:56:30.347444347Z [16:56:30 INF] 🛡️ Configurando políticas de autorización...
+2026-02-18T16:56:30.34949061Z [16:56:30 INF] 🌐 Configurando CORS para DESARROLLO...
+2026-02-18T16:56:30.350405344Z [16:56:30 INF]  Registrando repositorios...
+2026-02-18T16:56:30.350918667Z [16:56:30 INF] ⚙️ Registrando servicios...
+2026-02-18T16:56:30.351233935Z [16:56:30 INF] 💾 Configurando caché Redis (producción)...
+2026-02-18T16:56:30.438335173Z [16:56:30 INF] 📧 Configurando servicio de email con MailKit (producción)...
+2026-02-18T16:56:30.438356754Z [16:56:30 INF] 🖼️ Configurando servicio de almacenamiento...
+2026-02-18T16:56:30.438360604Z [16:56:30 INF] 🔌 Registrando handlers de WebSocket...
+2026-02-18T16:56:30.463513466Z [16:56:30 INF] 🔍 Configurando GraphQL con HotChocolate...
+2026-02-18T16:56:30.938045818Z [16:56:30 INF] 🔍 Configurando GraphiQL UI...
+2026-02-18T16:56:30.942448902Z [16:56:30 INF] 🌐 Aplicando política CORS: AllowAll
+2026-02-18T16:56:30.943244362Z [16:56:30 INF] 📡 Configurando endpoints WebSocket...
+2026-02-18T16:56:31.546190604Z [16:56:31 INF] 🗄️ Inicializando base de datos...
+2026-02-18T16:56:35.946671152Z Cannot load library libgssapi_krb5.so.2 
+2026-02-18T16:56:35.946695863Z Error: libgssapi_krb5.so.2: cannot open shared object file: No such file or directory
+2026-02-18T16:56:37.64230429Z [16:56:37 INF] ✅ Base de datos verificada (tablas creadas si no existían)
+2026-02-18T16:56:37.645914664Z [16:56:37 INF] 🖼️ [PRODUCCIÓN] Verificando directorio de almacenamiento: /app/wwwroot/uploads
+2026-02-18T16:56:37.837207843Z [16:56:37 INF] 🚀 Iniciando aplicación FunkoApi...
+2026-02-18T16:56:37.851603756Z [16:56:37 WRN] Storing keys in a directory '/home/app/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed. For more information go to https://aka.ms/aspnet/dataprotectionwarning
+2026-02-18T16:56:38.037895235Z [16:56:38 WRN] No XML encryptor configured. Key {bd0a8f92-8c3a-4cd0-83a9-318da031bc66} may be persisted to storage in unencrypted form.
+2026-02-18T16:56:38.051313243Z [16:56:38 WRN] Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://0.0.0.0:8080'.
+2026-02-18T16:56:38.138509004Z [16:56:38 INF] Servicio de email en segundo plano iniciado
+2026-02-18T16:56:38.239853821Z [16:56:38 INF] 🌐 CORS: AllowAll (desarrollo)
+2026-02-18T16:56:38.339382191Z [16:56:38 INF] Now listening on: http://0.0.0.0:8080
+2026-02-18T16:56:38.339407102Z [16:56:38 INF] Application started. Press Ctrl+C to shut down.
+2026-02-18T16:56:38.339411042Z [16:56:38 INF] Hosting environment: Production
+2026-02-18T16:56:38.339413512Z [16:56:38 INF] Content root path: /app
+2026-02-18T16:56:38.749494913Z [16:56:38 WRN] Failed to determine the https port for redirect.
+2026-02-18T16:56:45.169674679Z [16:56:45 INF] Application is shutting down...
+2026-02-18T16:56:46.795992416Z ==> Your service is live 🎉
+2026-02-18T16:56:46.954001012Z ==> 
+2026-02-18T16:56:46.956431201Z ==> ///////////////////////////////////////////////////////////
+2026-02-18T16:56:46.958031356Z ==> 
+2026-02-18T16:56:46.960379082Z ==> Available at your primary URL https://pruebaanteproyecto.onrender.com
+2026-02-18T16:56:46.961932966Z ==> 
+2026-02-18T16:56:46.963533301Z ==> ///////////////////////////////////////////////////////////
+2026-02-18T16:59:23.24915099Z [16:59:23 INF] Petición de inicio de sesión recibida para usuario: admin
+2026-02-18T16:59:23.336988417Z [16:59:23 INF] SignIn request for username: admin
+2026-02-18T16:59:35.047476182Z [16:59:35 ERR] Excepción no manejada. ErrorId: e8a2c02d, Message: IDX10653: The encryption algorithm 'HS256' requires a key size of at least '128' bits. Key 'Null', is of size: '56'. (Parameter 'key')
+2026-02-18T16:59:35.047509663Z System.ArgumentOutOfRangeException: IDX10653: The encryption algorithm 'HS256' requires a key size of at least '128' bits. Key 'Null', is of size: '56'. (Parameter 'key')
+2026-02-18T16:59:35.047515543Z    at Microsoft.IdentityModel.Tokens.SymmetricSignatureProvider..ctor(SecurityKey key, String algorithm, Boolean willCreateSignatures)
+2026-02-18T16:59:35.047531813Z    at Microsoft.IdentityModel.Tokens.CryptoProviderFactory.CreateSignatureProvider(SecurityKey key, String algorithm, Boolean willCreateSignatures, Boolean cacheProvider)
+2026-02-18T16:59:35.047534323Z    at Microsoft.IdentityModel.Tokens.CryptoProviderFactory.CreateForSigning(SecurityKey key, String algorithm, Boolean cacheProvider)
+2026-02-18T16:59:35.047537324Z    at Microsoft.IdentityModel.Tokens.CryptoProviderFactory.CreateForSigning(SecurityKey key, String algorithm)
+2026-02-18T16:59:35.047539924Z    at Microsoft.IdentityModel.JsonWebTokens.JwtTokenUtilities.CreateEncodedSignature(String input, SigningCredentials signingCredentials)
+2026-02-18T16:59:35.047543304Z    at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.WriteToken(SecurityToken token)
+2026-02-18T16:59:35.047546704Z    at FunkoApi.Service.auth.JwtService.GenerateToken(User user) in /src/FunkoApi/Service/auth/JwtService.cs:line 55
+2026-02-18T16:59:35.047549734Z    at FunkoApi.Service.auth.AuthService.GenerateAuthResponse(User user) in /src/FunkoApi/Service/auth/AuthService.cs:line 120
+2026-02-18T16:59:35.047551964Z    at FunkoApi.Service.auth.AuthService.SignInAsync(LoginDto dto) in /src/FunkoApi/Service/auth/AuthService.cs:line 83
+2026-02-18T16:59:35.047554094Z    at FunkoApi.Controllers.AuthController.SignIn(LoginDto dto) in /src/FunkoApi/Controllers/AuthController.cs:line 59
+2026-02-18T16:59:35.047557084Z    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+2026-02-18T16:59:35.047559944Z    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+2026-02-18T16:59:35.047562714Z    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2026-02-18T16:59:35.047564824Z    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+2026-02-18T16:59:35.047567084Z    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+2026-02-18T16:59:35.047569644Z    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2026-02-18T16:59:35.047572034Z    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2026-02-18T16:59:35.047574424Z    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+2026-02-18T16:59:35.047576465Z    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+2026-02-18T16:59:35.047578745Z    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2026-02-18T16:59:35.047581645Z    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+2026-02-18T16:59:35.047584045Z    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+2026-02-18T16:59:35.047586245Z    at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+2026-02-18T16:59:35.047592915Z    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+2026-02-18T16:59:35.047595295Z    at FunkoApi.Middleware.GlobalExceptionHandler.InvokeAsync(HttpContext context) in /src/FunkoApi/Middleware/GlobalExceptionHandler.cs:line 24
+2026-02-18T17:01:44.999615099Z ==> Detected service running on port 8080
+2026-02-18T17:01:45.139960944Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
