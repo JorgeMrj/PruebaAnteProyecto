@@ -18,13 +18,20 @@ public static class AuthenticationConfig
     {
         Log.Information("🔐 Configurando autenticación JWT...");
 
-        var jwtKey = configuration["Jwt:Key"]
+        // Lee primero las variables de entorno directas, luego las jerárquicas
+        var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY") 
+            ?? configuration["Jwt:Key"]
             ?? throw new InvalidOperationException("JWT Key no configurada");
-        var jwtIssuer = configuration["Jwt:Issuer"] ?? "TiendaApi";
-        var jwtAudience = configuration["Jwt:Audience"] ?? "TiendaApi";
+        var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER") 
+            ?? configuration["Jwt:Issuer"] 
+            ?? "TiendaApi";
+        var jwtAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") 
+            ?? configuration["Jwt:Audience"] 
+            ?? "TiendaApi";
 
         Log.Debug("🔑 JWT Issuer: {Issuer}", jwtIssuer);
         Log.Debug("🎯 JWT Audience: {Audience}", jwtAudience);
+        Log.Debug("🔐 JWT Key length: {Length} chars", jwtKey.Length);
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
