@@ -1,4 +1,41 @@
-<app-lista></app-lista>
+<div class="min-h-screen bg-base-200">
+  <!-- Navbar -->
+  <div class="navbar bg-base-100 shadow-lg">
+    <div class="flex-1">
+      <a routerLink="/" class="btn btn-ghost text-xl">🎭 FunkoStore</a>
+    </div>
+    <div class="flex-none gap-2">
+      @if (authService.isLoggedIn()) {
+        <a routerLink="/funko/new" class="btn btn-primary btn-sm"> ➕ Crear Funko </a>
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+            <div
+              class="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center"
+            >
+              @if (authService.currentUser(); as user) {
+                <span class="text-lg">{{ user.username.charAt(0).toUpperCase() }}</span>
+              }
+            </div>
+          </div>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li class="menu-title">
+              <span>{{ authService.currentUser()?.username }}</span>
+            </li>
+            <li><a (click)="authService.logout()">🚪 Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      } @else {
+        <a routerLink="/login" class="btn btn-primary btn-sm"> 🔐 Iniciar Sesión </a>
+      }
+    </div>
+  </div>
 
+  <!-- Contenido -->
+  <router-outlet />
 
-<router-outlet />
+  <!-- Indicador de sincronización -->
+  <app-sync-status />
+</div>
